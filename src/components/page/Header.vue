@@ -1,0 +1,104 @@
+<template>
+  <v-app-bar app clipped-left light color="white" elevate-on-scroll>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-app-bar-nav-icon @click="collapse = !collapse" v-on="on" />
+      </template>
+      <span>主菜单</span>
+    </v-tooltip>
+    <span class="title ml-2">
+      ZeonGit&nbsp;
+      <span class="font-weight-light">账号</span>
+    </span>
+    <v-spacer />
+    <v-btn fab depressed icon class="mr-2">
+      <v-icon>mdi-bell-outline</v-icon>
+    </v-btn>
+    <v-btn fab depressed icon class="mr-2">
+      <v-icon>mdi-apps</v-icon>
+    </v-btn>
+    <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+        <v-btn fab depressed icon v-on="on">
+          <img
+            src="../../assets/image/svg/default-head.svg"
+            width="40"
+            class="head-img"
+          />
+        </v-btn>
+      </template>
+      <v-list class="py-0 user-menu">
+        <v-list-item class="background"> </v-list-item>
+        <v-list-item class="head-img-item">
+          <img src="../../assets/image/svg/default-head.svg" class="head-img" />
+        </v-list-item>
+        <v-list-item class="justify-center flex-column">
+          <p class="font-weight-black nickname my-2">昵称</p>
+          <p class="introduction  mb-0">描述</p>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item class="justify-center py-5">
+          <v-btn outlined color="primary">退出登录</v-btn>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+  </v-app-bar>
+</template>
+
+<script>
+import { mapMutations } from "vuex"
+
+export default {
+  computed: {
+    collapse: {
+      get() {
+        return this.$store.state.menu.collapse
+      },
+      set(val) {
+        this.MUpdateCollapse(val)
+      }
+    }
+  },
+  methods: {
+    ...mapMutations("menu", ["MUpdateCollapse"])
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import "src/assets/style/color";
+.head-img {
+  border-radius: 50%;
+}
+.user-menu {
+  max-width: 100%;
+  $size: 380px;
+  width: $size;
+  .background {
+    text-align: center;
+    height: $size/2;
+    background-image: url("../../assets/image/svg/default-picture.svg");
+    background-size: cover;
+    background-position: center;
+    align-items: end;
+  }
+  .head-img-item {
+    .head-img {
+      $head-size: 100px;
+      height: $head-size;
+      width: $head-size;
+      margin: (-$head-size/2) auto 0 auto;
+      border: 3px solid #fff;
+    }
+  }
+  .nickname {
+    color: $font-color-dark;
+    font: 500 16px/22px Google Sans, Roboto, RobotoDraft, Helvetica, Arial,
+      sans-serif;
+  }
+  .introduction {
+    color: $font-color-dark-fade;
+    font: 400 14px/19px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  }
+}
+</style>

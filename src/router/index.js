@@ -1,30 +1,38 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-
-Vue.use(VueRouter);
+import Vue from "vue"
+import VueRouter from "vue-router"
+import jsCookie from "js-cookie"
+import login from "../views/login/script/router"
+import user from "../views/user/script/router"
+Vue.use(VueRouter)
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "content",
+    component: () => import("../views/Content"),
+    children: [...user]
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/",
+    name: "login",
+    component: () => import("../views/Login"),
+    children: [...login]
   }
-];
+]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes
-});
+})
+const nextPath = ["/signIn", "/signUp", "/forgot"]
 
-export default router;
+router.beforeEach(async (to, from, next) => {
+  //没有token
+  if (!jsCookie.get("token") && !nextPath.includes(to.path)) {
+    next("/signIn")
+    return
+  }
+  next() // 必须使用 next ,执行效果依赖 next 方法的调用参数
+})
+export default router
