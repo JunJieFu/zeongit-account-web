@@ -39,7 +39,7 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item class="justify-center py-5">
-          <v-btn outlined color="primary">退出登录</v-btn>
+          <v-btn outlined color="primary" @click="signOut">退出登录</v-btn>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -62,7 +62,10 @@ export default {
     ...mapState("user", ["info"])
   },
   methods: {
-    ...mapMutations("menu", ["MUpdateCollapse"])
+    ...mapMutations("menu", ["MUpdateCollapse"]),
+    async signOut() {
+      await this.$confirm({ text: "您确定退出 Zeongit 吗？" })
+    }
   }
 }
 </script>
