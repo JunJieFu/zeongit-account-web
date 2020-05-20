@@ -20,21 +20,22 @@
     <v-menu offset-y>
       <template v-slot:activator="{ on }">
         <v-btn fab depressed icon v-on="on">
-          <img
-            src="../../assets/image/svg/default-head.svg"
-            width="40"
-            class="head-img"
-          />
+          <img :src="$img.head(info.avatarUrl)" width="40" class="head-img" />
         </v-btn>
       </template>
       <v-list class="py-0 user-menu">
-        <v-list-item class="background"> </v-list-item>
+        <v-list-item class="background px-0">
+          <img
+            :src="$img.back(info.background, 'backCard')"
+            style="width: 100%"
+          />
+        </v-list-item>
         <v-list-item class="head-img-item">
-          <img src="../../assets/image/svg/default-head.svg" class="head-img" />
+          <img :src="$img.head(info.avatarUrl)" class="head-img" />
         </v-list-item>
         <v-list-item class="justify-center flex-column">
-          <p class="font-weight-black nickname my-2">昵称</p>
-          <p class="introduction  mb-0">描述</p>
+          <p class="font-weight-black nickname my-2">{{ info.nickname }}</p>
+          <p class="introduction  mb-0">{{ info.introduction }}</p>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item class="justify-center py-5">
@@ -46,7 +47,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex"
+import { mapMutations, mapState } from "vuex"
 
 export default {
   computed: {
@@ -57,7 +58,8 @@ export default {
       set(val) {
         this.MUpdateCollapse(val)
       }
-    }
+    },
+    ...mapState("user", ["info"])
   },
   methods: {
     ...mapMutations("menu", ["MUpdateCollapse"])
@@ -77,9 +79,6 @@ export default {
   .background {
     text-align: center;
     height: $size/2;
-    background-image: url("../../assets/image/svg/default-picture.svg");
-    background-size: cover;
-    background-position: center;
     align-items: end;
   }
   .head-img-item {

@@ -78,7 +78,7 @@ export default {
 
     window.app.$store?.commit("menu/MUpdateProgress", false)
     next((vm) => {
-      vm.info = 999
+      console.log(vm)
     })
   },
   mounted() {
