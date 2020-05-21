@@ -1,7 +1,7 @@
 export default {
   domain:
     process.env.NODE_ENV === "development"
-      ? "http://localhost:12086"
+      ? "http://localhost:12180"
       : "http://www.secdra.com",
   host: process.env.NODE_ENV === "development" ? "/api" : "/",
   qiniuImg: "http://secdraimg.secdra.com",

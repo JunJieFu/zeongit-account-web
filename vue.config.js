@@ -1,7 +1,7 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
   devServer: {
-    port: 12086, // 端口
+    port: 12180, // 端口
     proxy: {
       "/api": {
         // 目标 API 地址

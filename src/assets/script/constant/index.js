@@ -11,12 +11,3 @@ export function menuListConstant() {
 }
 
 export const NOOP = () => {}
-
-export function listConstant() {
-  const gap = 16
-  const width = 256
-  return {
-    gap,
-    width
-  }
-}
