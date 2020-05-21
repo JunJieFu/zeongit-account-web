@@ -2,6 +2,7 @@
   <v-card
     class="d-flex flex-column fill-height"
     :elevation="$vuetify.breakpoint.xsOnly ? 0 : undefined"
+    :tile="$vuetify.breakpoint.xsOnly"
     :loading="loading"
   >
     <v-card-title class="px-6">
@@ -78,10 +79,12 @@
 <script>
 import { SignUpForm } from "../../assets/script/model"
 import { mapActions } from "vuex"
+import urlUtil from "../../assets/script/util/url"
 
 export default {
   data() {
     return {
+      continue: this.$route.query.continue,
       form: new SignUpForm(this.$enum.VerificationCodeOperation.REGISTER.key),
       rePassword: "",
       loading: false,
@@ -102,7 +105,9 @@ export default {
       const result = await this.ASignUp(this.form)
       this.loading = false
       await this.$resultNotify(result)
-      this.$router.replace("/")
+      urlUtil.isUrl(this.continue)
+        ? location.replace(this.continue)
+        : this.$router.replace(this.continue ? this.continue : "/")
     }
   }
 }

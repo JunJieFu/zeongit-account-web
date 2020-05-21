@@ -7,7 +7,7 @@ import "./assets/style/index.scss"
 import _enum from "./assets/script/constant/enum"
 import config from "./assets/script/constant/config"
 import filters from "./assets/script/filter"
-import Img from "./assets/script/util/imgUrlUtil"
+import Img from "./assets/script/util/imgUrl"
 import { Notification, Confirm, Prompt } from "./components/global"
 
 Object.keys(filters).forEach((key) => {

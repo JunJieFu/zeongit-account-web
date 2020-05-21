@@ -75,15 +75,12 @@ export default {
   },
   async beforeRouteEnter(to, from, next) {
     window.app.$store?.commit("menu/MUpdateProgress", true)
-
     window.app.$store?.commit("menu/MUpdateProgress", false)
     next((vm) => {
       console.log(vm)
     })
   },
-  mounted() {
-    console.log(this.info)
-  }
+  mounted() {}
 }
 </script>
 

@@ -7,21 +7,40 @@
       <span>主菜单</span>
     </v-tooltip>
     <span class="title ml-2">
-      ZeonGit&nbsp;
-      <span class="font-weight-light">账号</span>
+      ZeonGit
+      <span class="font-weight-light ml-1">账号</span>
     </span>
     <v-spacer />
-    <v-btn fab depressed icon class="mr-2">
-      <v-icon>mdi-bell-outline</v-icon>
-    </v-btn>
-    <v-btn fab depressed icon class="mr-2">
-      <v-icon>mdi-apps</v-icon>
-    </v-btn>
-    <v-menu offset-y>
+    <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-btn fab depressed icon v-on="on">
-          <img :src="$img.head(info.avatarUrl)" width="40" class="head-img" />
+        <v-btn fab depressed icon class="mr-2" v-on="on">
+          <v-icon>mdi-bell-outline</v-icon>
         </v-btn>
+      </template>
+      <span>消息</span>
+    </v-tooltip>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn fab depressed icon class="mr-2" v-on="on">
+          <v-icon>mdi-apps</v-icon>
+        </v-btn>
+      </template>
+      <span>应用</span>
+    </v-tooltip>
+    <v-menu offset-y>
+      <template v-slot:activator="{ on: menu }">
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on: tooltip }">
+            <v-btn fab depressed icon v-on="Object.assign(menu, tooltip)">
+              <img
+                :src="$img.head(info.avatarUrl)"
+                width="40"
+                class="head-img"
+              />
+            </v-btn>
+          </template>
+          <span>主菜单</span>
+        </v-tooltip>
       </template>
       <v-list class="py-0 user-menu">
         <v-list-item class="background px-0">
@@ -48,7 +67,7 @@
 
 <script>
 import { mapMutations, mapState } from "vuex"
-
+import jsCookie from "js-cookie"
 export default {
   computed: {
     collapse: {
@@ -65,6 +84,10 @@ export default {
     ...mapMutations("menu", ["MUpdateCollapse"]),
     async signOut() {
       await this.$confirm({ text: "您确定退出 Zeongit 吗？" })
+      jsCookie.remove("token")
+      this.$router.replace(
+        `/signIn?continue=${encodeURI(this.$route.fullPath)}`
+      )
     }
   }
 }

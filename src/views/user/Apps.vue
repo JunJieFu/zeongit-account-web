@@ -81,9 +81,7 @@ export default {
       console.log(vm)
     })
   },
-  mounted() {
-    console.log(this.info)
-  }
+  mounted() {}
 }
 </script>
 
