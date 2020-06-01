@@ -60,7 +60,10 @@ export default {
   _handleToken(response = {}) {
     const headers = response.headers || {}
     if (headers.token) {
-      jsCookies.set("token", headers.token, { expires: 30 })
+      jsCookies.set("token", headers.token, {
+        expires: 30,
+        domain: config.domain
+      })
     }
     if (response.data.status === 401) {
       jsCookies.remove("token")
