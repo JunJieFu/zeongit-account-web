@@ -11,6 +11,7 @@
       <v-card-subtitle>
         使用 Zeongit 服务的其他用户可能会看到部分信息。
       </v-card-subtitle>
+      <v-divider></v-divider>
       <v-list class="py-0 list">
         <v-list-item class="py-3">
           <label>头像</label>
@@ -89,9 +90,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$page-width: 840px;
+@import "src/assets/style/config";
+
 .page {
-  max-width: $page-width;
+  max-width: $small-page-size;
 }
 .list {
   label {

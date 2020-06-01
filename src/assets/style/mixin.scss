@@ -14,9 +14,9 @@
 }
 
 .ellipsis {
-   overflow: hidden;
-   text-overflow: ellipsis;
-   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 //.ellipsis--clamp($line) {
@@ -27,3 +27,7 @@
 //  -webkit-box-orient: vertical;
 //  -webkit-line-clamp: $line;
 //}
+
+.v-img{
+  vertical-align: middle;
+}

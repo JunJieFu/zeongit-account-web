@@ -85,9 +85,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$page-width: 840px;
+@import "src/assets/style/config";
+
 .page {
-  max-width: $page-width;
+  max-width: $small-page-size;
 }
 .list {
   label {

@@ -1,19 +1,34 @@
 <template>
-  <v-app-bar app clipped-left light color="white" elevate-on-scroll>
+  <v-app-bar app clipped-left elevate-on-scroll>
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-app-bar-nav-icon @click="collapse = !collapse" v-on="on" />
+        <v-app-bar-nav-icon
+          :small="$vuetify.breakpoint.xsOnly"
+          @click="collapse = !collapse"
+          v-on="on"
+        />
       </template>
       <span>主菜单</span>
     </v-tooltip>
-    <span class="title ml-2">
+    <router-link
+      to="/"
+      class="title ml-2"
+      v-show="$vuetify.breakpoint.mdAndUp"
+      style="line-height: 1.5em"
+    >
       ZeonGit
       <span class="font-weight-light ml-1">账号</span>
-    </span>
+    </router-link>
     <v-spacer />
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-btn fab depressed icon class="mr-2" v-on="on">
+        <v-btn
+          depressed
+          icon
+          :small="$vuetify.breakpoint.xsOnly"
+          class="ml-2"
+          v-on="on"
+        >
           <v-icon>mdi-bell-outline</v-icon>
         </v-btn>
       </template>
@@ -21,47 +36,20 @@
     </v-tooltip>
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-btn fab depressed icon class="mr-2" v-on="on">
+        <v-btn
+          depressed
+          icon
+          :small="$vuetify.breakpoint.xsOnly"
+          v-on="on"
+          class="ml-2"
+        >
           <v-icon>mdi-apps</v-icon>
         </v-btn>
       </template>
       <span>应用</span>
     </v-tooltip>
-    <v-menu offset-y>
-      <template v-slot:activator="{ on: menu }">
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on: tooltip }">
-            <v-btn fab depressed icon v-on="Object.assign(menu, tooltip)">
-              <img
-                :src="$img.head(info.avatarUrl)"
-                width="40"
-                class="head-img"
-              />
-            </v-btn>
-          </template>
-          <span>主菜单</span>
-        </v-tooltip>
-      </template>
-      <v-list class="py-0 user-menu">
-        <v-list-item class="background px-0">
-          <img
-            :src="$img.back(info.background, 'backCard')"
-            style="width: 100%"
-          />
-        </v-list-item>
-        <v-list-item class="head-img-item">
-          <img :src="$img.head(info.avatarUrl)" class="head-img" />
-        </v-list-item>
-        <v-list-item class="justify-center flex-column">
-          <p class="font-weight-black nickname my-2">{{ info.nickname }}</p>
-          <p class="introduction  mb-0">{{ info.introduction }}</p>
-        </v-list-item>
-        <v-divider></v-divider>
-        <v-list-item class="justify-center py-5">
-          <v-btn outlined color="primary" @click="signOut">退出登录</v-btn>
-        </v-list-item>
-      </v-list>
-    </v-menu>
+    <header-settings></header-settings>
+    <header-user></header-user>
   </v-app-bar>
 </template>
 
@@ -69,6 +57,10 @@
 import { mapMutations, mapState } from "vuex"
 import jsCookie from "js-cookie"
 export default {
+  components: {
+    "header-settings": () => import("./header/Settings"),
+    "header-user": () => import("./header/User")
+  },
   computed: {
     collapse: {
       get() {

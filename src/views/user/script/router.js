@@ -14,5 +14,9 @@ export default [
   {
     path: "/apps",
     component: () => import("../Apps")
+  },
+  {
+    path: "/feedback",
+    component: () => import("../Feedback")
   }
 ]
