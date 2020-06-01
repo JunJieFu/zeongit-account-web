@@ -78,8 +78,8 @@
 
 <script>
 import { SignUpForm } from "../../assets/script/model"
-import { mapActions } from "vuex"
 import urlUtil from "../../assets/script/util/url"
+import { userService } from "../../assets/script/service"
 
 export default {
   data() {
@@ -92,17 +92,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["ASendCode", "ASignUp"]),
     async sendCode() {
       this.loading = true
-      const result = await this.ASendCode(this.form)
+      const result = await userService.sendCode(this.form)
       this.loading = false
       await this.$resultNotify(result)
       this.step++
     },
     async signUp() {
       this.loading = true
-      const result = await this.ASignUp(this.form)
+      const result = await userService.signUp(this.form)
       this.loading = false
       await this.$resultNotify(result)
       urlUtil.isUrl(this.continue)

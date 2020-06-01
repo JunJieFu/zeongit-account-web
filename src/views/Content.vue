@@ -23,10 +23,11 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex"
+import { mapMutations, mapState } from "vuex"
 import Menu from "../components/page/Menu"
 import Init from "../components/page/Init"
 import Header from "../components/page/Header"
+import { userInfoService } from "../assets/script/service"
 
 export default {
   components: {
@@ -46,10 +47,11 @@ export default {
     this.getInfo()
   },
   methods: {
-    ...mapActions("user", ["AGetInfo"]),
+    ...mapMutations("user", ["MSetInfo"]),
     async getInfo() {
-      const result = await this.AGetInfo()
+      const result = await userInfoService.get()
       this.status = result.status
+      this.MSetInfo(result.data)
     }
   }
 }

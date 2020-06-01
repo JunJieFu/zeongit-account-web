@@ -15,7 +15,9 @@
         <v-divider></v-divider>
         <v-list-item class="py-3">
           <label>密码</label>
-          <span class="flex-grow-1 pr-3 ellipsis">上次修改日期：</span>
+          <span class="flex-grow-1 pr-3 ellipsis"
+            >上次修改日期：{{ date | date("YYYY-MM-DD") }}</span
+          >
           <v-icon>mdi-chevron-right</v-icon>
         </v-list-item>
       </v-list>
@@ -24,7 +26,27 @@
 </template>
 
 <script>
-export default {}
+import { userInfoService } from "../../assets/script/service"
+
+export default {
+  created() {
+    this.init()
+  },
+  data() {
+    return {
+      date: undefined
+    }
+  },
+  methods: {
+    init() {
+      this.getModifiedPasswordDate()
+    },
+    async getModifiedPasswordDate() {
+      const result = await userInfoService.getModifiedPasswordDate()
+      this.date = result.data
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

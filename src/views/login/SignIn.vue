@@ -42,8 +42,8 @@
 
 <script>
 import { SignInForm } from "../../assets/script/model"
-import { mapActions } from "vuex"
 import urlUtil from "../../assets/script/util/url"
+import { userService } from "../../assets/script/service"
 
 export default {
   name: "SignIn",
@@ -55,10 +55,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["ASignIn"]),
     async signIn() {
       this.loading = true
-      const result = await this.ASignIn(this.form)
+      const result = await userService.signIn(this.form)
       this.loading = false
       await this.$resultNotify(result)
       urlUtil.isUrl(this.continue)

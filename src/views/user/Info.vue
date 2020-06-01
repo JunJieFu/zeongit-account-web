@@ -15,17 +15,21 @@
       <v-list class="py-0 list">
         <v-list-item class="py-3">
           <label>头像</label>
-          <span class="flex-grow-1">更改头像可帮助您个性化您的帐号</span>
+          <span class="flex-grow-1 pr-3 ellipsis"
+            >更改头像可帮助您个性化您的帐号</span
+          >
           <img
             src="../../assets/image/svg/default-head.svg"
             width="60"
-            class="head-img"
+            class="circle"
           />
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item class="py-3">
           <label>背景墙</label>
-          <span class="flex-grow-1">更改背景可帮助您个性化您的帐号</span>
+          <span class="flex-grow-1 pr-3 ellipsis"
+            >更改背景可帮助您个性化您的帐号</span
+          >
           <v-icon>mdi-chevron-right</v-icon>
         </v-list-item>
         <v-divider></v-divider>
@@ -37,13 +41,17 @@
         <v-divider></v-divider>
         <v-list-item class="py-3">
           <label>生日</label>
-          <span class="flex-grow-1 pr-3 ellipsis">{{ info.birthday }}</span>
+          <span class="flex-grow-1 pr-3 ellipsis">{{
+            info.birthday | date("YYYY-MM-DD")
+          }}</span>
           <v-icon>mdi-chevron-right</v-icon>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item class="py-3">
           <label>性别</label>
-          <span class="flex-grow-1 pr-3 ellipsis">{{ info.gender }}</span>
+          <span class="flex-grow-1 pr-3 ellipsis">{{
+            $enum.Gender[info.gender].value
+          }}</span>
           <v-icon>mdi-chevron-right</v-icon>
         </v-list-item>
         <v-divider></v-divider>
@@ -55,7 +63,11 @@
         <v-divider></v-divider>
         <v-list-item class="py-3">
           <label>居住地址</label>
-          <span class="flex-grow-1 pr-3 ellipsis">{{ info.introduction }}</span>
+          <span class="flex-grow-1 pr-3 ellipsis">
+            {{ info.country }}
+            {{ info.province }}
+            {{ info.city }}
+          </span>
           <v-icon>mdi-chevron-right</v-icon>
         </v-list-item>
       </v-list>
@@ -66,26 +78,10 @@
 <script>
 import { mapState } from "vuex"
 
-// function setTimeoutSync(wait) {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve()
-//     }, wait)
-//   })
-// }
 export default {
   computed: {
     ...mapState("user", ["info"])
-  },
-  async beforeRouteEnter(to, from, next) {
-    window.app.$store?.commit("menu/MUpdateProgress", true)
-
-    window.app.$store?.commit("menu/MUpdateProgress", false)
-    next((vm) => {
-      console.log(vm)
-    })
-  },
-  mounted() {}
+  }
 }
 </script>
 
@@ -99,9 +95,6 @@ export default {
   label {
     font-size: 0.6875rem;
     width: 15%;
-  }
-  .head-img {
-    border-radius: 50%;
   }
 }
 </style>

@@ -75,7 +75,7 @@
 
 <script>
 import { UserForm } from "../../assets/script/model"
-import { mapActions } from "vuex"
+import { userInfoService } from "../../assets/script/service"
 
 export default {
   components: {
@@ -88,10 +88,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["ASave"]),
     async save() {
       this.loading = true
-      const result = await this.ASave(this.form)
+      const result = await userInfoService.save(this.form)
       this.loading = false
       await this.$resultNotify(result)
       this.$emit("init")
