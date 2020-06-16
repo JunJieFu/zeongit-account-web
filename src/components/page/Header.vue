@@ -42,7 +42,6 @@
 
 <script>
 import { mapMutations, mapState } from "vuex"
-import jsCookie from "js-cookie"
 export default {
   components: {
     "header-settings": () => import("./header/Settings"),
@@ -61,14 +60,7 @@ export default {
     ...mapState("user", ["info"])
   },
   methods: {
-    ...mapMutations("menu", ["MUpdateCollapse"]),
-    async signOut() {
-      await this.$confirm({ text: "您确定退出 Zeongit 吗？" })
-      jsCookie.remove("token")
-      this.$router.replace(
-        `/signIn?continue=${encodeURI(this.$route.fullPath)}`
-      )
-    }
+    ...mapMutations("menu", ["MUpdateCollapse"])
   }
 }
 </script>

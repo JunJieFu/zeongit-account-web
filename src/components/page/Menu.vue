@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="collapse" app clipped>
+  <v-navigation-drawer v-model="collapse" app clipped temporary>
     <v-divider v-show="$vuetify.breakpoint.lgAndUp"></v-divider>
     <v-list :dense="$vuetify.breakpoint.smAndDown">
       <v-list-item-group>
@@ -67,9 +67,6 @@ export default {
 <style lang="scss" scoped>
 @import "src/assets/style/color.scss";
 .related {
-  color: $font-color-dark-fade;
-  &:hover {
-    color: $blue;
-  }
+  color: currentColor;
 }
 </style>

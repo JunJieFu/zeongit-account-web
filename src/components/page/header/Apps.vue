@@ -18,7 +18,7 @@
     </template>
     <v-card>
       <iframe
-        src="http://localhost:12180/#/frame/apps"
+        src="http://localhost:12180/frame/apps"
         class="iframe-menu"
       ></iframe>
     </v-card>

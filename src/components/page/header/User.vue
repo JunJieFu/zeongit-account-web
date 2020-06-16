@@ -52,6 +52,7 @@
 <script>
 import { mapState } from "vuex"
 import jsCookie from "js-cookie"
+import config from "../../../assets/script/constant/config"
 export default {
   computed: {
     ...mapState("user", ["info"])
@@ -59,7 +60,9 @@ export default {
   methods: {
     async signOut() {
       await this.$confirm({ text: "您确定退出 Zeongit 吗？" })
-      jsCookie.remove("token")
+      jsCookie.remove("token", {
+        domain: config.domain
+      })
       location.reload()
     }
   }

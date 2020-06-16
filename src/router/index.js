@@ -25,11 +25,15 @@ const routes = [
     name: "frame",
     component: () => import("../views/Frame"),
     children: [...frame]
+  },
+  {
+    path: "/*",
+    redirect: "/"
   }
 ]
 
 const router = new VueRouter({
-  mode: "hash",
+  mode: "history",
   base: process.env.BASE_URL,
   routes
 })

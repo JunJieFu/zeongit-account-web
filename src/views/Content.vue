@@ -9,7 +9,6 @@
       style="z-index: 999"
     ></v-progress-linear>
     <Header> </Header>
-
     <v-content>
       <v-divider></v-divider>
       <v-container fluid>
