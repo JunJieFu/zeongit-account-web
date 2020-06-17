@@ -16,16 +16,51 @@
         <span>应用</span>
       </v-tooltip>
     </template>
-    <v-card>
-      <iframe
-        src="http://localhost:12180/frame/apps"
-        class="iframe-menu"
-      ></iframe>
+    <v-card class="iframe-menu">
+      <v-row class="mx-0" ref="row">
+        <v-col :cols="4">
+          <a
+            :href="$config.accountHost"
+            target="_blank"
+            class="d-flex flex-column align-center flex-xl-grow-1"
+          >
+            <v-img
+              :src="$img.head(info.avatarUrl)"
+              class="circle"
+              :aspect-ratio="1"
+              width="50"
+            ></v-img>
+            <span class="ellipsis font-weight-thin">Zeongit 账号</span>
+          </a>
+        </v-col>
+        <v-col :cols="4">
+          <a
+            :href="$config.beautyHost"
+            target="_blank"
+            class="d-flex flex-column align-center flex-xl-grow-1"
+          >
+            <v-img
+              src="../../../assets/image/svg/beauty.svg"
+              class="circle"
+              :aspect-ratio="1"
+              width="50"
+            ></v-img>
+            <span class="ellipsis font-weight-thin">Beauty</span>
+          </a>
+        </v-col>
+      </v-row>
     </v-card>
   </v-menu>
 </template>
 
-<script></script>
+<script>
+import { mapState } from "vuex"
+export default {
+  computed: {
+    ...mapState("user", ["info"])
+  }
+}
+</script>
 
 <style scoped lang="scss">
 @import "src/assets/style/color";
