@@ -22,7 +22,7 @@
           <a
             :href="$config.accountHost"
             target="_blank"
-            class="d-flex flex-column align-center flex-xl-grow-1"
+            class="d-flex flex-column align-center flex-xl-grow-1 link"
           >
             <v-img
               :src="$img.head(info.avatarUrl)"
@@ -37,7 +37,7 @@
           <a
             :href="$config.beautyHost"
             target="_blank"
-            class="d-flex flex-column align-center flex-xl-grow-1"
+            class="d-flex flex-column align-center flex-xl-grow-1 link"
           >
             <v-img
               src="../../../assets/image/svg/beauty.svg"
@@ -68,5 +68,8 @@ export default {
   max-width: 100%;
   $size: 380px;
   width: $size;
+}
+.link {
+  color: currentColor;
 }
 </style>
