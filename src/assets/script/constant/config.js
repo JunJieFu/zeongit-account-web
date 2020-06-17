@@ -1,6 +1,5 @@
 export default {
-  domain:
-    process.env.NODE_ENV === "development" ? "localhost:12085" : ".secdra.com",
+  domain: process.env.NODE_ENV === "development" ? "localhost" : ".secdra.com",
   host: process.env.NODE_ENV === "development" ? "/api" : "/api",
   accountHost:
     process.env.NODE_ENV === "development"

@@ -6,5 +6,9 @@ export default [
   {
     path: "/signUp",
     component: () => import("../SignUp")
+  },
+  {
+    path: "/forgot",
+    component: () => import("../Forgot")
   }
 ]

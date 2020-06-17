@@ -86,6 +86,15 @@ export class SignUpForm {
   }
 }
 
+export class ForgotForm {
+  constructor(verificationCodeOperation) {
+    this.phone = ""
+    this.verificationCode = ""
+    this.verificationCodeOperation = verificationCodeOperation
+    this.password = ""
+  }
+}
+
 export class UserForm {
   constructor() {
     this.nickname = ""

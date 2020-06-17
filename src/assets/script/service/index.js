@@ -9,6 +9,9 @@ export const userService = {
   },
   signIn(params) {
     return httpUtil.post("/user/signIn", params)
+  },
+  forgot(params) {
+    return httpUtil.post("/user/forgot", params)
   }
 }
 

@@ -5,7 +5,7 @@
     width="100%"
   >
     <v-card-title>
-      注册您的账号
+      找回您的密码
     </v-card-title>
     <v-card-text>
       <v-row>
@@ -63,8 +63,8 @@
                   ></v-text-field>
                 </v-col>
                 <v-col :cols="12">
-                  <v-btn @click.native="signUp" color="primary" block large
-                    >确认注册并登录</v-btn
+                  <v-btn @click.native="forgot" color="primary" block large
+                    >确认并重置密码</v-btn
                   >
                 </v-col>
               </v-row>
@@ -74,13 +74,13 @@
           <v-row>
             <v-col cols="12">
               <div>
-                <router-link to="/forgot" class="link">
-                  忘记了登录密码？
+                <router-link to="/signIn" class="link">
+                  已经有登录账号？
                 </router-link>
               </div>
               <div>
-                <router-link to="/signIp" class="link">
-                  已经有登录账号？
+                <router-link to="/signUp" class="link">
+                  没有账号，立即创建一个！
                 </router-link>
               </div>
             </v-col>
@@ -97,15 +97,13 @@
 </template>
 
 <script>
-import { SignUpForm } from "../../assets/script/model"
-import urlUtil from "../../assets/script/util/url"
+import { ForgotForm } from "../../assets/script/model"
 import { userService } from "../../assets/script/service"
 
 export default {
   data() {
     return {
-      continue: this.$route.query.continue,
-      form: new SignUpForm(this.$enum.VerificationCodeOperation.REGISTER.key),
+      form: new ForgotForm(this.$enum.VerificationCodeOperation.FORGET.key),
       rePassword: "",
       loading: false,
       step: 0
@@ -119,14 +117,12 @@ export default {
       await this.$resultNotify(result)
       this.step++
     },
-    async signUp() {
+    async forgot() {
       this.loading = true
-      const result = await userService.signUp(this.form)
+      const result = await userService.forgot(this.form)
       this.loading = false
       await this.$resultNotify(result)
-      urlUtil.isUrl(this.continue)
-        ? location.replace(this.continue)
-        : this.$router.replace(this.continue ? this.continue : "/")
+      this.$router.replace("/signIp")
     }
   }
 }

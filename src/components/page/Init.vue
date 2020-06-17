@@ -3,6 +3,7 @@
     <v-card
       :elevation="$vuetify.breakpoint.xsOnly ? 0 : undefined"
       :loading="loading"
+      width="100%"
     >
       <v-card-title>
         完善您的信息
