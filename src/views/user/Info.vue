@@ -19,7 +19,7 @@
             >更改头像可帮助您个性化您的帐号</span
           >
           <img
-            src="../../assets/image/svg/default-head.svg"
+            src="../../assets/image/svg/default-avatar.svg"
             width="60"
             class="circle"
           />

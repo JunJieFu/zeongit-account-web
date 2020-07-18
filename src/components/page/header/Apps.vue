@@ -25,7 +25,7 @@
             class="d-flex flex-column align-center flex-xl-grow-1 link"
           >
             <v-img
-              :src="$img.head(info.avatarUrl)"
+              :src="$imageUrl.avatar(info.avatarUrl)"
               class="circle"
               :aspect-ratio="1"
               width="50"
