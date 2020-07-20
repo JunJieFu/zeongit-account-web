@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app clipped-left elevate-on-scroll>
-    <v-tooltip bottom>
+    <v-tooltip bottom :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-app-bar-nav-icon
           :small="$vuetify.breakpoint.xsOnly"
@@ -20,7 +20,7 @@
       <span class="font-weight-light ml-1">账号</span>
     </router-link>
     <v-spacer />
-    <v-tooltip bottom>
+    <v-tooltip bottom :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-btn
           depressed
