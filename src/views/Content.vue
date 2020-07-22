@@ -9,12 +9,12 @@
       style="z-index: 999"
     ></v-progress-linear>
     <Header> </Header>
-    <v-content>
-      <v-divider></v-divider>
+    <Menu></Menu>
+    <v-main>
       <v-container fluid>
         <router-view />
       </v-container>
-    </v-content>
+    </v-main>
     <Menu></Menu>
   </div>
   <Init v-else-if="status === 503" @init="getInfo"></Init>

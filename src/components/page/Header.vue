@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app clipped-left elevate-on-scroll>
+  <v-app-bar app clipped-left hide-on-scroll flat>
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
         <v-app-bar-nav-icon
