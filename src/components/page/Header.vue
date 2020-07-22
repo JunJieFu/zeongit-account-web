@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app clipped-left hide-on-scroll flat>
-    <v-tooltip bottom>
+    <v-tooltip bottom :disabled="$isMobile">
       <template v-slot:activator="{ on }">
         <v-app-bar-nav-icon
           :small="$vuetify.breakpoint.xsOnly"
