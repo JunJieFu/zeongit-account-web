@@ -1,7 +1,9 @@
 <template>
-  <div class="page mx-auto align-sm-center pa-sm-4 d-flex fill-height">
-    <router-view></router-view>
-  </div>
+  <v-main>
+    <div class="page mx-auto align-sm-center pa-sm-4 d-flex fill-height">
+      <router-view></router-view>
+    </div>
+  </v-main>
 </template>
 
 <script></script>

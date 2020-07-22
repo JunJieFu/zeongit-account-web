@@ -37,6 +37,7 @@
     <header-apps></header-apps>
     <header-settings></header-settings>
     <header-user></header-user>
+    <v-divider class="header-divider"></v-divider>
   </v-app-bar>
 </template>
 
@@ -66,36 +67,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/style/color";
-.head-img {
-  border-radius: 50%;
-}
-.user-menu {
-  max-width: 100%;
-  $size: 380px;
-  width: $size;
-  .background {
-    text-align: center;
-    height: $size/2;
-    align-items: end;
-  }
-  .head-img-item {
-    .head-img {
-      $head-size: 100px;
-      height: $head-size;
-      width: $head-size;
-      margin: (-$head-size/2) auto 0 auto;
-      border: 3px solid #fff;
-    }
-  }
-  .nickname {
-    color: $font-color-dark;
-    font: 500 16px/22px Google Sans, Roboto, RobotoDraft, Helvetica, Arial,
-      sans-serif;
-  }
-  .introduction {
-    color: $font-color-dark-fade;
-    font: 400 14px/19px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-  }
+.header-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 </style>

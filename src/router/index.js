@@ -9,7 +9,6 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: "/",
-    name: "content",
     component: () => import("../views/Content"),
     children: [...user]
   },

@@ -9,6 +9,8 @@ import _enum from "./assets/script/constant/enum"
 import config from "./assets/script/constant/config"
 import filters from "./assets/script/filter"
 import imageUrl from "./assets/script/util/imageUrl"
+import GlobalComponents from "./components/global"
+Vue.use(GlobalComponents)
 
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
@@ -17,7 +19,6 @@ Vue.prototype.$imageUrl = imageUrl
 Vue.prototype.$enum = _enum
 Vue.prototype.$config = config
 Vue.prototype.$filter = filters
-Vue.prototype.$notify = Notification
 Vue.config.productionTip = false
 
 Vue.prototype.$resultNotify = function(result) {
