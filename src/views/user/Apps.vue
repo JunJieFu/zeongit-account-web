@@ -1,11 +1,5 @@
 <template>
   <div class="page justify-center d-flex flex-column mx-auto">
-    <div class="d-flex flex-column text-center my-6">
-      <h1 class="title font-weight-black">欢迎使用，{{ info.nickname }}</h1>
-      <p class="desc">
-        管理自己的信息、隐私权和安全，从而让 Zeongit 更好地为您服务
-      </p>
-    </div>
     <v-row class="ma-0" justify="center" align="center">
       <v-col cols="12" sm="12" md="12" lg="12" xl="12">
         <v-card :elevation="0" class="mt-12 pt-12" color="transparent">
