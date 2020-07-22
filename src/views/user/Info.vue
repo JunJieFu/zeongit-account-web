@@ -18,11 +18,7 @@
           <span class="flex-grow-1 pr-3 ellipsis"
             >更改头像可帮助您个性化您的帐号</span
           >
-          <img
-            src="../../assets/image/svg/default-avatar.svg"
-            width="60"
-            class="circle"
-          />
+          <avatar :info="info" size="60"></avatar>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item class="py-3">
