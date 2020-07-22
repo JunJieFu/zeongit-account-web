@@ -8,19 +8,16 @@ import "./assets/style/variables.scss"
 import _enum from "./assets/script/constant/enum"
 import config from "./assets/script/constant/config"
 import filters from "./assets/script/filter"
-import Img from "./assets/script/util/imgUrl"
-import { Notification, Confirm, Prompt } from "./components/global"
+import imageUrl from "./assets/script/util/imageUrl"
 
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
-Vue.prototype.$img = Img
+Vue.prototype.$imageUrl = imageUrl
 Vue.prototype.$enum = _enum
 Vue.prototype.$config = config
 Vue.prototype.$filter = filters
 Vue.prototype.$notify = Notification
-Vue.prototype.$confirm = Confirm
-Vue.prototype.$prompt = Prompt
 Vue.config.productionTip = false
 
 Vue.prototype.$resultNotify = function(result) {
