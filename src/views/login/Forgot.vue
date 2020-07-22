@@ -16,7 +16,7 @@
             hide-delimiters
             :next-icon="false"
             touchless
-            light
+            :light="!$vuetify.theme.isDark"
             show-arrows-on-hover
             v-model="step"
             height="auto"
