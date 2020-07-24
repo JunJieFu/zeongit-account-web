@@ -1,8 +1,5 @@
 <template>
-  <v-app>
+  <zg-app>
     <router-view />
-    <notify></notify>
-    <confirm></confirm>
-    <prompt></prompt>
-  </v-app>
+  </zg-app>
 </template>

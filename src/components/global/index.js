@@ -1,9 +1,7 @@
 import Vue from "vue"
 export default {
   install() {
-    Vue.component("notify", () => import("./Notify"))
-    Vue.component("confirm", () => import("./Confirm"))
-    Vue.component("prompt", () => import("./Prompt"))
+    Vue.component("zg-app", () => import("./ZgApp"))
     Vue.component("avatar", () => import("./Avatar"))
     Vue.prototype.$confirm = function(...args) {
       return window.$confirm(...args)
