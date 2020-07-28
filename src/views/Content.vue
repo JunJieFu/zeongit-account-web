@@ -58,4 +58,11 @@ export default {
 .global-progress {
   z-index: $overlay-index !important;
 }
+
+::v-deep .card-list {
+  label {
+    font-size: 0.6875rem;
+    width: 15%;
+  }
+}
 </style>

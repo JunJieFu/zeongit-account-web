@@ -11,7 +11,7 @@
       <v-card-subtitle>
         立即解决这些问题，保护您的帐号
       </v-card-subtitle>
-      <v-list class="py-0 list">
+      <v-list class="py-0 card-list">
         <v-divider></v-divider>
         <v-list-item class="py-3">
           <label>密码</label>
@@ -53,11 +53,5 @@ export default {
 @import "src/plugins/zg/style/config";
 .page {
   max-width: $small-page-size;
-}
-.list {
-  label {
-    font-size: 0.6875rem;
-    width: 15%;
-  }
 }
 </style>

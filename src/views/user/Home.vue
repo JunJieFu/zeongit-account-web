@@ -38,10 +38,4 @@ export default {
 .page {
   max-width: $small-page-size;
 }
-.list {
-  label {
-    font-size: 0.6875rem;
-    width: 15%;
-  }
-}
 </style>

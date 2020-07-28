@@ -12,7 +12,7 @@
         使用 Zeongit 服务的其他用户可能会看到部分信息。
       </v-card-subtitle>
       <v-divider></v-divider>
-      <v-list class="py-0 list">
+      <v-list class="py-0 card-list">
         <v-list-item class="py-3">
           <label>头像</label>
           <span class="flex-grow-1 pr-3 ellipsis"
@@ -86,11 +86,5 @@ export default {
 
 .page {
   max-width: $small-page-size;
-}
-.list {
-  label {
-    font-size: 0.6875rem;
-    width: 15%;
-  }
 }
 </style>
