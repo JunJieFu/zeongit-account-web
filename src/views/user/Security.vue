@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { userInfoService } from "../../assets/script/service"
+import { userInfoService } from "@/assets/script/service"
 
 export default {
   created() {

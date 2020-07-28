@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import { UserForm } from "../../assets/script/model"
-import { userInfoService } from "../../assets/script/service"
+import { UserForm } from "@/assets/script/model"
+import { userInfoService } from "@/assets/script/service"
 
 export default {
   components: {

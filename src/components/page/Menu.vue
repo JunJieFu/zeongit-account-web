@@ -40,7 +40,7 @@
 
 <script>
 import { mapMutations } from "vuex"
-import { menuListConstant } from "../../assets/script/constant"
+import { menuListConstant } from "@/assets/script/constant"
 
 export default {
   data() {

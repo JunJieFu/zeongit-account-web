@@ -97,8 +97,8 @@
 </template>
 
 <script>
-import { ForgotForm } from "../../assets/script/model"
-import { userService } from "../../assets/script/service"
+import { ForgotForm } from "@/assets/script/model"
+import { userService } from "@/assets/script/service"
 
 export default {
   data() {

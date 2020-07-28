@@ -1,4 +1,4 @@
-import { MenuEnum } from "../model"
+import { MenuEnum } from "@/assets/script/model"
 import { mdiHome, mdiSmartCardOutline, mdiLockOutline, mdiApps } from "@mdi/js"
 
 export function menuListConstant() {

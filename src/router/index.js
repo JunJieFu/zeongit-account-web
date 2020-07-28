@@ -1,21 +1,21 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import jsCookie from "js-cookie"
-import login from "../views/login/script/router"
-import user from "../views/user/script/router"
+import login from "@/views/login/script/router"
+import user from "@/views/user/script/router"
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: "/",
-    component: () => import("../views/Content"),
+    component: () => import("@/views/Content"),
     children: [...user]
   },
   {
     path: "/",
     name: "login",
-    component: () => import("../views/Login"),
+    component: () => import("@/views/Login"),
     children: [...login]
   },
   {

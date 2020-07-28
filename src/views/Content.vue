@@ -23,7 +23,7 @@
 
 <script>
 import { mapMutations, mapState } from "vuex"
-import { userInfoService } from "../assets/script/service"
+import { userInfoService } from "@/assets/script/service"
 
 export default {
   components: {

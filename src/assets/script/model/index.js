@@ -1,4 +1,4 @@
-import _enum from "../constant/enum"
+import _enum from "@/assets/script/constant/enum"
 
 export class MenuEnum {
   /**
