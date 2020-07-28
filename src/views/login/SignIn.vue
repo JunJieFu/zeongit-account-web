@@ -85,8 +85,4 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.link {
-  line-height: 35px;
-}
-</style>
+<style lang="scss" scoped></style>

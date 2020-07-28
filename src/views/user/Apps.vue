@@ -28,7 +28,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "src/plugins/zg/style/config";
-
 .page {
   max-width: $small-page-size;
 }

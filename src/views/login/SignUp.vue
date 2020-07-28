@@ -133,14 +133,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo {
-  max-width: 270px;
-  min-width: 80%;
-}
 .placeholder {
   margin-top: 140px;
-}
-.link {
-  line-height: 35px;
 }
 </style>

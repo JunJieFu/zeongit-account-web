@@ -8,11 +8,15 @@
 
 <script></script>
 
+<!--suppress CssInvalidPseudoSelector -->
 <style lang="scss" scoped>
 @import "src/plugins/zg/style/config";
 
 .page {
   max-width: $small-page-size;
   width: 100%;
+  ::v-deep .link {
+    line-height: 35px;
+  }
 }
 </style>
