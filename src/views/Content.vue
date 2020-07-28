@@ -8,8 +8,8 @@
       color="primary"
       class="global-progress"
     ></v-progress-linear>
-    <Header> </Header>
-    <Menu></Menu>
+    <zg-header> </zg-header>
+    <zg-menu></zg-menu>
     <v-main>
       <v-container fluid>
         <router-view />
@@ -17,22 +17,19 @@
     </v-main>
     <Menu></Menu>
   </div>
-  <Init v-else-if="status === 503" @init="getInfo"></Init>
+  <zg-init v-else-if="status === 503" @init="getInfo"></zg-init>
   <div v-else></div>
 </template>
 
 <script>
 import { mapMutations, mapState } from "vuex"
-import Menu from "../components/page/Menu"
-import Init from "../components/page/Init"
-import Header from "../components/page/Header"
 import { userInfoService } from "../assets/script/service"
 
 export default {
   components: {
-    Header,
-    Menu,
-    Init
+    "zg-header": () => import("@/components/page/Header"),
+    "zg-menu": () => import("@/components/page/Menu"),
+    "zg-init": () => import("@/components/page/Init")
   },
   data() {
     return {
@@ -56,7 +53,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "src/assets/style/config";
+@import "src/plugins/zg/style/config";
+
 .global-progress {
   z-index: $overlay-index !important;
 }

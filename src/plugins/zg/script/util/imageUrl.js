@@ -1,4 +1,9 @@
-import config from "../constant/config"
+import {
+  QINIU_PICTURE,
+  QINIU_AVATAR,
+  QINIU_BACKGROUND,
+  QINIU_SEPARATOR
+} from "../constant/config"
 export default {
   PICTURE_TYPE: [
     null,
@@ -19,12 +24,12 @@ export default {
     if (url) {
       if (url.indexOf("blob") === 0 || url.indexOf("http") === 0) return url
       if (type) {
-        return `${config.qiniuImg}/${url}${config.qiniuSeparator}${type}`
+        return `${QINIU_PICTURE}/${url}${QINIU_SEPARATOR}${type}`
       } else {
-        return `${config.qiniuImg}/${url}`
+        return `${QINIU_PICTURE}/${url}`
       }
     } else {
-      return require("../../image/svg/default-picture.svg")
+      return require("../../image/default_picture.svg")
     }
   },
   pictureByObject({ url, height, width }, size, opposite = false) {
@@ -36,17 +41,16 @@ export default {
         const proportion = opposite ? width / height : height / width
         const prefix = proportion >= 1 ? "specifiedHeight" : "specifiedWidth"
         if (size === 240) size = ""
-        return `${config.qiniuImg}/${url}${config.qiniuSeparator}${prefix +
-          size}`
+        return `${QINIU_PICTURE}/${url}${QINIU_SEPARATOR}${prefix + size}`
       } else {
-        return `${config.qiniuImg}/${url}`
+        return `${QINIU_PICTURE}/${url}`
       }
     } else {
-      return require("../../image/svg/default-picture.svg")
+      return require("../../image/default_picture.svg")
     }
   },
   pictureLazy(unknown, type, opposite = false) {
-    let src = require("../../image/svg/default-picture.svg")
+    let src = require("../../image/default_picture.svg")
     if (typeof unknown === "string") {
       src = this.picture(unknown, type)
     } else if (typeof unknown === "object") {
@@ -56,8 +60,8 @@ export default {
     }
     return {
       src,
-      error: require("../../image/svg/default-picture.svg"),
-      loading: require("../../image/svg/default-picture.svg")
+      error: require("../../image/default_picture.svg"),
+      loading: require("../../image/default_picture.svg")
     }
   },
   avatar(url, type) {
@@ -66,19 +70,19 @@ export default {
     if (url) {
       if (url.indexOf("blob") === 0 || url.indexOf("http") === 0) return url
       if (type) {
-        return `${config.qiniuHead}/${url}${config.qiniuSeparator}${type}`
+        return `${QINIU_AVATAR}/${url}${QINIU_SEPARATOR}${type}`
       } else {
-        return `${config.qiniuHead}/${url}`
+        return `${QINIU_AVATAR}/${url}`
       }
     } else {
-      return require("../../../assets/image/svg/default-avatar.svg")
+      return require("../../image/default_avatar.svg")
     }
   },
   avatarLazy(url, type) {
     return {
       src: this.avatar(url, type),
-      error: require("../../../assets/image/svg/default-avatar.svg"),
-      loading: require("../../../assets/image/svg/default-avatar.svg")
+      error: require("../../image/default_avatar.svg"),
+      loading: require("../../image/default_avatar.svg")
     }
   },
   background(url, type, is) {
@@ -88,22 +92,22 @@ export default {
       if (url.indexOf("blob") === 0 || url.indexOf("http") === 0) return url
       if (type) {
         if (is) {
-          return `${config.qiniuBack}/${url}?${type}`
+          return `${QINIU_BACKGROUND}/${url}?${type}`
         } else {
-          return `${config.qiniuBack}/${url}${config.qiniuSeparator}${type}`
+          return `${QINIU_BACKGROUND}/${url}${QINIU_SEPARATOR}${type}`
         }
       } else {
-        return `${config.qiniuBack}/${url}`
+        return `${QINIU_BACKGROUND}/${url}`
       }
     } else {
-      return require("../../image/svg/default-picture.svg")
+      return require("../../image/default_picture.svg")
     }
   },
   backgroundLazy(url, type, is) {
     return {
       src: this.background(url, type, is),
-      error: require("../../image/svg/default-picture.svg"),
-      loading: require("../../image/svg/default-picture.svg")
+      error: require("../../image/default_picture.svg"),
+      loading: require("../../image/default_picture.svg")
     }
   }
 }

@@ -1,53 +1,21 @@
 import Vue from "vue"
 import App from "./App.vue"
-import router from "./router"
-import store from "./store"
-import vuetify from "./plugins/vuetify"
-import "./assets/style/index.scss"
-import "./assets/style/variables.scss"
-import _enum from "./assets/script/constant/enum"
-import config from "./assets/script/constant/config"
-import filters from "./assets/script/filter"
-import imageUrl from "./assets/script/util/imageUrl"
-import GlobalComponents from "./components/global"
-Vue.use(GlobalComponents)
 
-Object.keys(filters).forEach((key) => {
-  Vue.filter(key, filters[key])
-})
-Vue.prototype.$imageUrl = imageUrl
+import router from "@/router"
+import store from "@/store"
+
+import vuetify from "@/plugins/vuetify"
+import "@/plugins/zg/style/index.scss"
+import "@/plugins/zg/style/variables.scss"
+import zg from "@/plugins/zg"
+Vue.use(zg)
+
+import _enum from "@/assets/script/constant/enum"
+import * as constant from "@/assets/script/constant"
 Vue.prototype.$enum = _enum
-Vue.prototype.$config = config
-Vue.prototype.$filter = filters
+Vue.prototype.$constant = constant
+
 Vue.config.productionTip = false
-
-Vue.prototype.$resultNotify = function(result) {
-  return new Promise((resolve, reject) => {
-    if (result?.status !== 200) {
-      window.app.$notify({
-        text: result?.message || "服务器错误",
-        color: "error"
-      })
-      reject(result)
-    } else {
-      resolve(result)
-    }
-  })
-}
-
-Vue.prototype.$isMobile = (function() {
-  const userAgentInfo = navigator.userAgent
-  const Agents = [
-    "Android",
-    "iPhone",
-    "SymbianOS",
-    "Windows Phone",
-    "iPad",
-    "iPod"
-  ]
-  return !!Agents.filter((it) => userAgentInfo.indexOf(it) > 0).length
-})()
-
 window.app = new Vue({
   router,
   store,

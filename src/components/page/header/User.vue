@@ -48,7 +48,7 @@
 <script>
 import { mapState } from "vuex"
 import jsCookie from "js-cookie"
-import config from "../../../assets/script/constant/config"
+import { DOMAIN } from "@/plugins/zg/script/constant/config"
 export default {
   computed: {
     ...mapState("user", ["info"])
@@ -57,7 +57,7 @@ export default {
     async signOut() {
       await this.$confirm({ text: "您确定退出 Zeongit 吗？" })
       jsCookie.remove("token", {
-        domain: config.domain
+        domain: DOMAIN
       })
       location.reload()
     }
@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/assets/style/color";
+@import "src/plugins/zg/style/color";
 .user-menu {
   max-width: 100%;
   $size: 380px;

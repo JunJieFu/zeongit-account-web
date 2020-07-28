@@ -88,7 +88,7 @@
         </v-col>
         <v-col cols="12" sm="5" md="5" lg="5" xl="6" class="hidden-xs-only">
           <div class="align-center d-flex fill-height">
-            <v-img src="../../assets/image/svg/account.svg"></v-img>
+            <v-img src="@/assets/image/account.svg"></v-img>
           </div>
         </v-col>
       </v-row>

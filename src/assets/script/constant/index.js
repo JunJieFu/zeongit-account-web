@@ -9,5 +9,3 @@ export function menuListConstant() {
     new MenuEnum("应用中心", "/apps", mdiApps)
   ]
 }
-
-export const NOOP = () => {}

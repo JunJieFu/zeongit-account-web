@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "src/assets/style/color.scss";
+@import "src/plugins/zg/style/color";
 .related {
   color: currentColor;
 }

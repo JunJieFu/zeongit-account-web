@@ -1,6 +1,6 @@
 import Vue from "vue"
 import Vuex from "vuex"
-import storageUtil from "../assets/script/util/storage"
+import storageUtil from "@/plugins/zg/script/util/storage"
 Vue.use(Vuex)
 
 export default {
