@@ -27,7 +27,7 @@
 #### 项目结构  
   
 #### API提供
-[beauty](https://github.com/JunJieFu/beauty)
+[zeongit-account](https://github.com/JunJieFu/zeongit-account)
   
 #### 构建  
 ``` bash  
