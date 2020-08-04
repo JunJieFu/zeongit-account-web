@@ -62,7 +62,7 @@ export default {
 ::v-deep .card-list {
   label {
     font-size: 0.6875rem;
-    width: 15%;
+    width: 80px;
   }
 }
 </style>

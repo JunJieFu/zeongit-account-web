@@ -2,7 +2,7 @@
   <div class="page justify-center d-flex flex-column mx-auto">
     <div class="d-flex flex-column text-center my-6">
       <h1 class="title font-weight-black">个人信息</h1>
-      <p class="desc">您在 Zeongit 服务中使用的基本信息，例如您的姓名和照片</p>
+      <p>您在 Zeongit 服务中使用的基本信息，例如您的姓名和照片</p>
     </div>
     <v-card outlined>
       <v-card-title>
