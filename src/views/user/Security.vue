@@ -2,7 +2,7 @@
   <div class="page justify-center d-flex flex-column mx-auto">
     <div class="d-flex flex-column text-center my-6">
       <h1 class="title font-weight-black">安全性</h1>
-      <p class="desc">有助于确保您帐号安全的设置和建议</p>
+      <p>有助于确保您帐号安全的设置和建议</p>
     </div>
     <v-card outlined>
       <v-card-title>

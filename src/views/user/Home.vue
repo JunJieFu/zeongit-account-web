@@ -2,7 +2,7 @@
   <div class="page justify-center d-flex flex-column mx-auto">
     <div class="d-flex flex-column text-center my-6">
       <h1 class="title font-weight-black">欢迎使用，{{ info.nickname }}</h1>
-      <p class="desc">
+      <p>
         管理自己的信息、隐私权和安全，从而让 Zeongit 更好地为您服务
       </p>
     </div>
