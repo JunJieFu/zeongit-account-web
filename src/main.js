@@ -22,3 +22,7 @@ window.app = new Vue({
   vuetify,
   render: (h) => h(App)
 }).$mount("#app")
+
+window.signInExceptionCallback = function() {
+  location.reload()
+}
