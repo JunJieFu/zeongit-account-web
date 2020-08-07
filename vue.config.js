@@ -24,7 +24,7 @@ module.exports = {
       // },
       "/api": {
         // 目标 API 地址
-        target: "http://account.secdra.com/",
+        target: "http://account.zeongit.cn/",
         // 如果要代理 websockets
         ws: true,
         secure: false,
