@@ -11,13 +11,14 @@
       <v-card-text>
         <v-row>
           <v-col cols="12" sm="7" md="7" lg="7" xl="6">
-            <v-form>
+            <v-form ref="form" v-model="formValid">
               <v-row>
                 <v-col cols="12" class="py-0">
                   <v-text-field
                     label="昵称"
-                    solo
+                    outlined
                     dense
+                    :rules="nicknameRules()"
                     v-model="form.nickname"
                   ></v-text-field>
                 </v-col>
@@ -27,10 +28,11 @@
                       <v-text-field
                         :value="date"
                         clearable
-                        label="生日"
+                        label="出生日期"
                         readonly
-                        solo
+                        outlined
                         dense
+                        :rules="birthdayRules()"
                         v-on="on"
                         @click:clear="form.birthday = ''"
                       ></v-text-field>
@@ -51,9 +53,44 @@
                   <v-textarea
                     v-model="form.introduction"
                     label="请用一些简单的话语描述您自己"
-                    solo
+                    outlined
                     dense
+                    :rules="introductionRules()"
                   ></v-textarea>
+                </v-col>
+                <v-col cols="4" class="py-0">
+                  <v-select
+                    v-model="form.country"
+                    :items="['中国']"
+                    label="国家"
+                    clearable
+                    dense
+                    outlined
+                  ></v-select>
+                </v-col>
+                <v-col cols="4" class="py-0">
+                  <v-select
+                    v-model="form.province"
+                    :items="chinatown"
+                    label="省份"
+                    item-text="label"
+                    value="label"
+                    clearable
+                    dense
+                    outlined
+                  ></v-select>
+                </v-col>
+                <v-col cols="4" class="py-0">
+                  <v-select
+                    v-model="form.city"
+                    :items="cityList"
+                    label="城市"
+                    item-text="label"
+                    value="label"
+                    clearable
+                    dense
+                    outlined
+                  ></v-select>
                 </v-col>
                 <v-col cols="12">
                   <v-btn @click.native="save" color="primary" block large
@@ -77,25 +114,74 @@
 <script>
 import { UserForm } from "@/assets/script/model"
 import { userInfoService } from "@/assets/script/service"
-
+import chinatown from "@/plugins/zg/script/constant/chinatown"
+import rulesUtil from "@/plugins/zg/script/util/rules"
 export default {
   components: {
     "date-picker-text-field": () =>
       import("@/plugins/zg/components/DatePickerTextField/Index")
   },
+  computed: {
+    cityList() {
+      if (this.form.province) {
+        return (
+          chinatown.find((it) => it.label === this.form.province)?.children ||
+          []
+        )
+      }
+      return []
+    }
+  },
   data() {
     return {
+      chinatown,
+      formValid: false,
       loading: false,
       form: new UserForm()
     }
   },
+  watch: {
+    "form.province"(value) {
+      if (value) {
+        const cityList =
+          chinatown
+            .find((it) => it.label === this.form.province)
+            ?.children.map((it) => it.label) || []
+        console.log(cityList.include)
+        if (!cityList.includes(this.form.city)) {
+          this.form.city = undefined
+        }
+      } else {
+        this.form.city = undefined
+      }
+    }
+  },
   methods: {
+    nicknameRules() {
+      return [rulesUtil.required("昵称")]
+    },
+    birthdayRules() {
+      return [
+        (value) => {
+          if (value === "") {
+            return "请选择出生日期"
+          }
+          return true
+        }
+      ]
+    },
+    introductionRules() {
+      return [rulesUtil.required("个人签名")]
+    },
     async save() {
-      this.loading = true
-      const result = await userInfoService.save(this.form)
-      this.loading = false
-      await this.$resultNotify(result)
-      this.$emit("init")
+      this.$refs.form.validate()
+      if (this.formValid) {
+        this.loading = true
+        const result = await userInfoService.save(this.form)
+        this.loading = false
+        await this.$resultNotify(result)
+        this.$emit("init")
+      }
     }
   }
 }

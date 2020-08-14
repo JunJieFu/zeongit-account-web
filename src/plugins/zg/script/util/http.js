@@ -13,7 +13,7 @@ export default {
   /**
    * get 请求
    * @param {string} url
-   * @param params
+   * @param {*!}params
    * @returns {Promise<>}
    */
   async get(url, params) {

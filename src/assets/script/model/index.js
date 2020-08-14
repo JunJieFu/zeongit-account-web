@@ -41,9 +41,12 @@ export class ForgotForm {
 
 export class UserForm {
   constructor() {
-    this.nickname = ""
-    this.birthday = ""
+    this.nickname = undefined
+    this.birthday = undefined
     this.gender = _enum.Gender.UNKNOWN.key
-    this.introduction = ""
+    this.introduction = undefined
+    this.country = undefined
+    this.province = undefined
+    this.city = undefined
   }
 }

@@ -66,7 +66,7 @@
 import { SignInForm } from "@/assets/script/model"
 import urlUtil from "@/plugins/zg/script/util/url"
 import { userService } from "@/assets/script/service"
-import rulesUtil from "@/views/login/script/rules"
+import rulesUtil from "@/plugins/zg/script/util/rules"
 
 export default {
   name: "SignIn",

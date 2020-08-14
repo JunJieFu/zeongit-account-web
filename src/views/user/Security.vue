@@ -13,7 +13,7 @@
       </v-card-subtitle>
       <v-list class="py-0 card-list">
         <v-divider></v-divider>
-        <v-list-item class="py-3">
+        <v-list-item class="py-3" @click="modifiedPasswordDialogVisible = true">
           <label>密码</label>
           <span class="flex-grow-1 pr-3 ellipsis"
             >上次修改日期：{{ date | date("YYYY-MM-DD") }}</span
@@ -22,6 +22,16 @@
         </v-list-item>
       </v-list>
     </v-card>
+    <v-dialog
+      v-model="modifiedPasswordDialogVisible"
+      persistent
+      max-width="100%"
+      width="350px"
+    >
+      <modified-password
+        @close="modifiedPasswordDialogVisible = false"
+      ></modified-password>
+    </v-dialog>
   </div>
 </template>
 
@@ -29,11 +39,15 @@
 import { userInfoService } from "@/assets/script/service"
 
 export default {
+  components: {
+    "modified-password": () => import("./components/ModifiedPassword")
+  },
   created() {
     this.init()
   },
   data() {
     return {
+      modifiedPasswordDialogVisible: false,
       date: undefined
     }
   },

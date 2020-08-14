@@ -12,6 +12,9 @@ export const userService = {
   },
   forgot(params) {
     return httpUtil.post("/user/forgot", params)
+  },
+  modified(params) {
+    return httpUtil.post("/user/modified", params)
   }
 }
 
@@ -20,6 +23,9 @@ export const userInfoService = {
     return httpUtil.get("/userInfo/get")
   },
   save(params) {
+    return httpUtil.post("/userInfo/save", params)
+  },
+  modified(params) {
     return httpUtil.post("/userInfo/save", params)
   },
   getModifiedPasswordDate() {

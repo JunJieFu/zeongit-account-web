@@ -108,7 +108,7 @@
 import { SignUpForm } from "@/assets/script/model"
 import urlUtil from "@/plugins/zg/script/util/url"
 import { userService } from "@/assets/script/service"
-import rulesUtil from "@/views/login/script/rules"
+import rulesUtil from "@/plugins/zg/script/util/rules"
 
 export default {
   data() {
@@ -132,10 +132,10 @@ export default {
     passwordRules() {
       return [rulesUtil.required("密码")]
     },
-    rePasswordRules(rePassword) {
+    rePasswordRules() {
       return [
         rulesUtil.required("确认密码"),
-        () => {
+        (rePassword) => {
           if (rePassword !== this.form.password) {
             return "两次密码不一致"
           }
