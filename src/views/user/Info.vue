@@ -13,7 +13,7 @@
       </v-card-subtitle>
       <v-divider></v-divider>
       <v-list class="py-0 card-list">
-        <v-list-item class="py-3" @click="modifiedNicknameDialogVisible = true">
+        <v-list-item class="py-3" @click="modifiedAvatarDialogVisible = true">
           <label>头像</label>
           <span class="flex-grow-1 pr-3 ellipsis"
             >更改头像可帮助您个性化您的帐号</span
@@ -71,6 +71,17 @@
         </v-list-item>
       </v-list>
     </v-card>
+    <v-dialog
+      v-model="modifiedAvatarDialogVisible"
+      persistent
+      max-width="100%"
+      width="650px"
+    >
+      <modified-avatar
+        @close="modifiedAvatarDialogVisible = false"
+        @success="modifiedAvatarDialogVisible = false"
+      ></modified-avatar>
+    </v-dialog>
     <v-dialog
       v-model="modifiedNicknameDialogVisible"
       persistent
@@ -134,6 +145,7 @@ import { mapState } from "vuex"
 
 export default {
   components: {
+    "modified-avatar": () => import("./components/ModifiedAvatar"),
     "modified-nickname": () => import("./components/ModifiedNickname"),
     "modified-birthday": () => import("./components/ModifiedBirthday"),
     "modified-gender": () => import("./components/ModifiedGender"),
@@ -145,6 +157,7 @@ export default {
   },
   data() {
     return {
+      modifiedAvatarDialogVisible: false,
       modifiedNicknameDialogVisible: false,
       modifiedBirthdayDialogVisible: false,
       modifiedGenderDialogVisible: false,

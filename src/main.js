@@ -7,6 +7,7 @@ import store from "@/store"
 import vuetify from "@/plugins/vuetify"
 import "@/plugins/zg/style/index.scss"
 import "@/plugins/zg/style/variables.scss"
+import "@/assets/style/cropper.scss"
 import zg from "@/plugins/zg"
 Vue.use(zg)
 
