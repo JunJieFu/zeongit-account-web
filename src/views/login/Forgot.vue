@@ -22,52 +22,60 @@
             height="auto"
           >
             <v-carousel-item>
-              <v-row>
-                <v-col :cols="12" class="py-0">
-                  <v-text-field
-                    label="手机号码"
-                    prepend-icon="mdi-cellphone"
-                    v-model.trim="form.phone"
-                  ></v-text-field>
-                </v-col>
-                <v-col :cols="12" class="placeholder">
-                  <v-btn @click.native="sendCode" color="primary" block large
-                    >获取验证码</v-btn
-                  >
-                </v-col>
-              </v-row>
+              <v-form ref="sendCordForm" v-model="sendCordFormValid">
+                <v-row>
+                  <v-col :cols="12" class="py-0">
+                    <v-text-field
+                      label="手机号码"
+                      prepend-icon="mdi-cellphone"
+                      v-model.trim="form.phone"
+                      :rules="phoneRules()"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col :cols="12" class="placeholder">
+                    <v-btn @click.native="sendCode" color="primary" block large
+                      >获取验证码</v-btn
+                    >
+                  </v-col>
+                </v-row>
+              </v-form>
             </v-carousel-item>
             <v-carousel-item>
-              <v-row>
-                <v-col :cols="12" class="py-0">
-                  <v-text-field
-                    label="验证码"
-                    prepend-icon="mdi-check"
-                    v-model.trim="form.verificationCode"
-                  ></v-text-field>
-                </v-col>
-                <v-col :cols="12" class="py-0">
-                  <v-text-field
-                    label="密码"
-                    type="password"
-                    prepend-icon="mdi-lock"
-                    v-model.trim="form.password"
-                  ></v-text-field>
-                </v-col>
-                <v-col :cols="12" class="py-0">
-                  <v-text-field
-                    label="确认密码"
-                    prepend-icon="mdi-lock-check"
-                    type="password"
-                    v-model.trim="rePassword"
-                  ></v-text-field>
-                </v-col>
-                <v-col :cols="12">
-                  <v-btn @click.native="forgot" color="primary" block large
-                    >确认并重置密码</v-btn
-                  >
-                </v-col>
-              </v-row>
+              <v-form ref="form" v-model="formValid">
+                <v-row>
+                  <v-col :cols="12" class="py-0">
+                    <v-text-field
+                      label="验证码"
+                      prepend-icon="mdi-check"
+                      v-model.trim="form.verificationCode"
+                      :rules="verificationCodeRules()"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col :cols="12" class="py-0">
+                    <v-text-field
+                      label="密码"
+                      type="password"
+                      prepend-icon="mdi-lock"
+                      v-model.trim="form.password"
+                      :rules="passwordRules()"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col :cols="12" class="py-0">
+                    <v-text-field
+                      label="确认密码"
+                      prepend-icon="mdi-lock-check"
+                      type="password"
+                      v-model.trim="rePassword"
+                      :rules="rePasswordRules()"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col :cols="12">
+                    <v-btn @click.native="forgot" color="primary" block large
+                      >确认并重置密码</v-btn
+                    >
+                  </v-col>
+                </v-row>
+              </v-form>
             </v-carousel-item>
           </v-carousel>
           <v-spacer />
@@ -99,30 +107,60 @@
 <script>
 import { ForgotForm } from "@/assets/script/model"
 import { userService } from "@/assets/script/service"
+import rulesUtil from "./script/rules"
 
 export default {
   data() {
     return {
       form: new ForgotForm(this.$enum.VerificationCodeOperation.FORGET.key),
+      formValid: false,
+      sendCordFormValid: false,
       rePassword: "",
       loading: false,
       step: 0
     }
   },
   methods: {
+    phoneRules() {
+      return [rulesUtil.required("手机号码")]
+    },
+    verificationCodeRules() {
+      return [rulesUtil.required("验证码")]
+    },
+    passwordRules() {
+      return [rulesUtil.required("密码")]
+    },
+    rePasswordRules(rePassword) {
+      return [
+        rulesUtil.required("确认密码"),
+        () => {
+          if (rePassword !== this.form.password) {
+            return "两次密码不一致"
+          }
+          return true
+        }
+      ]
+    },
     async sendCode() {
-      this.loading = true
-      const result = await userService.sendCode(this.form)
-      this.loading = false
-      await this.$resultNotify(result)
-      this.step++
+      this.$refs.sendCordForm.validate()
+      if (this.sendCordFormValid) {
+        this.loading = true
+        const result = await userService.sendCode(this.form)
+        this.loading = false
+        await this.$resultNotify(result)
+        this.step++
+      }
     },
     async forgot() {
-      this.loading = true
-      const result = await userService.forgot(this.form)
-      this.loading = false
-      await this.$resultNotify(result)
-      this.$router.replace("/signIp")
+      this.$refs.form.validate()
+      if (this.formValid) {
+        this.loading = true
+        const result = await userService.forgot(this.form)
+        this.loading = false
+        await this.$resultNotify(result)
+        this.$notify({ text: "修改成功", color: "success" })
+        this.$router.replace("/signIp")
+      }
     }
   }
 }

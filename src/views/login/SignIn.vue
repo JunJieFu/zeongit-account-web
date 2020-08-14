@@ -10,23 +10,27 @@
     <v-card-text>
       <v-row>
         <v-col cols="12" sm="7" md="7" lg="7" xl="6" class="d-flex flex-column">
-          <v-row>
-            <v-col cols="12" class="py-0">
-              <v-text-field
-                label="手机号码"
-                prepend-icon="mdi-cellphone"
-                v-model.trim="form.phone"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" class="py-0">
-              <v-text-field
-                label="密码"
-                prepend-icon="mdi-lock"
-                type="password"
-                v-model.trim="form.password"
-              ></v-text-field>
-            </v-col>
-          </v-row>
+          <v-form ref="form" v-model="formValid">
+            <v-row>
+              <v-col cols="12" class="py-0">
+                <v-text-field
+                  label="手机号码"
+                  prepend-icon="mdi-cellphone"
+                  v-model.trim="form.phone"
+                  :rules="phoneRules()"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" class="py-0">
+                <v-text-field
+                  label="密码"
+                  prepend-icon="mdi-lock"
+                  type="password"
+                  v-model.trim="form.password"
+                  :rules="passwordRules()"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-form>
           <v-spacer />
           <v-row>
             <v-col cols="12">
@@ -62,25 +66,36 @@
 import { SignInForm } from "@/assets/script/model"
 import urlUtil from "@/plugins/zg/script/util/url"
 import { userService } from "@/assets/script/service"
+import rulesUtil from "@/views/login/script/rules"
 
 export default {
   name: "SignIn",
   data() {
     return {
       continue: this.$route.query.continue,
+      formValid: false,
       loading: false,
       form: new SignInForm()
     }
   },
   methods: {
+    phoneRules() {
+      return [rulesUtil.required("手机号码")]
+    },
+    passwordRules() {
+      return [rulesUtil.required("密码")]
+    },
     async signIn() {
-      this.loading = true
-      const result = await userService.signIn(this.form)
-      this.loading = false
-      await this.$resultNotify(result)
-      urlUtil.isUrl(this.continue)
-        ? location.replace(this.continue)
-        : this.$router.replace(this.continue ? this.continue : "/")
+      this.$refs.form.validate()
+      if (this.formValid) {
+        this.loading = true
+        const result = await userService.signIn(this.form)
+        this.loading = false
+        await this.$resultNotify(result)
+        urlUtil.isUrl(this.continue)
+          ? location.replace(this.continue)
+          : this.$router.replace(this.continue ? this.continue : "/")
+      }
     }
   }
 }
