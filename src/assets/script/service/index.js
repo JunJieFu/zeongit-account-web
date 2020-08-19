@@ -28,7 +28,19 @@ export const userInfoService = {
   modified(params) {
     return httpUtil.post("/userInfo/save", params)
   },
+  modifiedAvatarUrl(params) {
+    return httpUtil.post("/userInfo/modifiedAvatarUrl", params)
+  },
+  modifiedBackground(params) {
+    return httpUtil.post("/userInfo/modifiedBackground", params)
+  },
   getModifiedPasswordDate() {
     return httpUtil.get("/userInfo/getModifiedPasswordDate")
+  }
+}
+
+export const qiniuService = {
+  get() {
+    return httpUtil.get("/qiniu/get")
   }
 }

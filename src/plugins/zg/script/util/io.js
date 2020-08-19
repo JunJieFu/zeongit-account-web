@@ -1,13 +1,19 @@
 export default {
-  dataURLtoFile(dataurl, filename = "file") {
-    const arr = dataurl.split(",")
+  /**
+   * canvas转文件
+   * @param { string } dataUrl
+   * @param filename
+   * @returns {File}
+   */
+  dataURLtoFile(dataUrl, filename = "file") {
+    const arr = dataUrl.split(",")
     const mime = arr[0].match(/:(.*?);/)[1]
     const suffix = mime.split("/")[1]
-    const bstr = atob(arr[1])
-    let n = bstr.length
+    const str = atob(arr[1])
+    let n = str.length
     const u8arr = new Uint8Array(n)
     while (n--) {
-      u8arr[n] = bstr.charCodeAt(n)
+      u8arr[n] = str.charCodeAt(n)
     }
     return new File([u8arr], `${filename}.${suffix}`, { type: mime })
   },
@@ -26,8 +32,8 @@ export default {
   },
   /**
    *
-   * @param url
-   * @returns {Promise<*>}
+   * @param {String} url
+   * @returns {Promise<{width:string,height:string}>}
    */
   getOffset(url) {
     const img = new Image()
@@ -42,6 +48,13 @@ export default {
       }
     })
   },
+  /**
+   *
+   * @param {HTMLCanvasElement} sourceCanvas
+   * @param width
+   * @param height
+   * @returns {HTMLCanvasElement}
+   */
   getRoundedCanvas(sourceCanvas, width, height) {
     const canvas = document.createElement("canvas")
     const context = canvas.getContext("2d")
@@ -57,6 +70,12 @@ export default {
     context.fill()
     return canvas
   },
+  /**
+   *
+   * @param {File} file
+   * @param suffixList
+   * @returns {boolean}
+   */
   isImage(file, suffixList = ["jpg", "png", "jpeg"]) {
     if (!(file instanceof File)) {
       throw new TypeError("not File")

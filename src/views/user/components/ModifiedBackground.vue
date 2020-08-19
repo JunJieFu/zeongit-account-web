@@ -1,7 +1,7 @@
 <template>
   <v-card width="100%" :loading="loading" class="overflow-x-hidden">
     <v-card-title>
-      更改头像
+      更改背景墙
     </v-card-title>
     <div>
       <img :src="value" ref="tailoring" width="100%" />
@@ -53,7 +53,7 @@ export default {
         ? this.$refs.tailoring.$el
         : this.$refs.tailoring,
       {
-        aspectRatio: 1,
+        aspectRatio: 2,
         viewMode: 1,
         background: false,
         zoomable: false
@@ -68,9 +68,7 @@ export default {
     async save() {
       this.loading = true
       const file = ioUtil.dataURLtoFile(
-        ioUtil
-          .getRoundedCanvas(this.cropper.getCroppedCanvas(), 400, 400)
-          .toDataURL()
+        this.cropper.getCroppedCanvas().toDataURL()
       )
       const form = new FormData()
       form.append("token", this.token)
@@ -94,8 +92,8 @@ export default {
         this.loading = false
         return
       }
-      const result = await userInfoService.modifiedAvatarUrl({
-        avatarUrl: qiniuResult.hash
+      const result = await userInfoService.modifiedBackground({
+        background: qiniuResult.hash
       })
       this.loading = false
       await this.$resultNotify(result)

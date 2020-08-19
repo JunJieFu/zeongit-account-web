@@ -1,5 +1,5 @@
 <template>
-  <div v-if="status === 200">
+  <div v-if="status === constant.SUCCESS">
     <v-progress-linear
       v-show="progress"
       indeterminate
@@ -17,13 +17,14 @@
     </v-main>
     <Menu></Menu>
   </div>
-  <zg-init v-else-if="status === 503" @init="getInfo"></zg-init>
+  <zg-init v-else-if="status === constant.INIT" @init="getInfo"></zg-init>
   <div v-else></div>
 </template>
 
 <script>
 import { mapMutations, mapState } from "vuex"
 import { userInfoService } from "@/assets/script/service"
+import constant from "@/plugins/zg/script/constant/main"
 
 export default {
   components: {
@@ -33,6 +34,7 @@ export default {
   },
   data() {
     return {
+      constant,
       status: null
     }
   },

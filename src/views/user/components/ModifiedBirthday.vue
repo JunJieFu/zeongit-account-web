@@ -44,9 +44,7 @@ export default {
             birthday: this.input
           })
           await this.$resultNotify(result)
-          const infoResult = await userInfoService.get()
-          await this.$resultNotify(infoResult)
-          this.MSetInfo(infoResult.data)
+          this.MSetInfo(result.data)
           this.$notify({ text: "修改成功", color: "success" })
           this.$emit("success")
           // eslint-disable-next-line no-empty
