@@ -1,5 +1,5 @@
 <template>
-  <v-menu offset-y v-model="menuShow">
+  <v-menu offset-y v-model="menuVisible">
     <template v-slot:activator="{ on: menu }">
       <v-tooltip bottom :disabled="$isMobile">
         <template v-slot:activator="{ on: tooltip }">
@@ -17,7 +17,7 @@
       </v-tooltip>
     </template>
     <v-list class="py-0" :dense="$vuetify.breakpoint.smAndDown" width="160">
-      <v-dialog v-model="darkDialogShow" max-width="280">
+      <v-dialog v-model="darkDialogVisible" max-width="280">
         <template v-slot:activator="{ on: mode }">
           <v-list-item v-on="mode">
             切换主题
@@ -54,13 +54,13 @@ import { mapMutations } from "vuex"
 export default {
   data() {
     return {
-      menuShow: false,
-      darkDialogShow: false
+      menuVisible: false,
+      darkDialogVisible: false
     }
   },
   watch: {
-    darkDialogShow(newVal) {
-      if (newVal) this.menuShow = false
+    darkDialogVisible(newVal) {
+      if (newVal) this.menuVisible = false
     }
   },
   computed: {
@@ -70,7 +70,7 @@ export default {
       },
       set(val) {
         this.MUpdateDark(val)
-        this.darkDialogShow = false
+        this.darkDialogVisible = false
       }
     }
   },
