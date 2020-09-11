@@ -23,7 +23,11 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" class="py-0">
-                  <date-picker-text-field v-model="form.birthday">
+                  <date-picker-text-field
+                    v-model="form.birthday"
+                    no-title
+                    :max="new Date().toISOString().substr(0, 10)"
+                  >
                     <template v-slot="{ on, date }">
                       <v-text-field
                         :value="date"

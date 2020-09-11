@@ -1,7 +1,11 @@
 <template>
   <v-card width="100%" :loading="loading">
     <v-form ref="form" v-model="formValid">
-      <v-date-picker v-model="input" full-width></v-date-picker>
+      <v-date-picker
+        v-model="input"
+        full-width
+        :max="new Date().toISOString().substr(0, 10)"
+      ></v-date-picker>
     </v-form>
     <v-card-actions>
       <v-spacer></v-spacer>
