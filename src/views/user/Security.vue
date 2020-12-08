@@ -53,10 +53,10 @@ export default {
   },
   methods: {
     init() {
-      this.getModifiedPasswordDate()
+      this.getUpdatePasswordDate()
     },
-    async getModifiedPasswordDate() {
-      const result = await userInfoService.getModifiedPasswordDate()
+    async getUpdatePasswordDate() {
+      const result = await userInfoService.getUpdatePasswordDate()
       this.date = result.data
     }
   }

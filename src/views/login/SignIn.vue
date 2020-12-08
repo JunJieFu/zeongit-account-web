@@ -67,6 +67,8 @@ import { SignInForm } from "@/assets/script/model"
 import urlUtil from "@/plugins/zg/script/util/url"
 import { userService } from "@/assets/script/service"
 import rulesUtil from "@/plugins/zg/script/util/rules"
+import jsCookie from "js-cookie"
+import { DOMAIN } from "@/plugins/zg/script/constant/config"
 
 export default {
   name: "SignIn",
@@ -92,6 +94,7 @@ export default {
         const result = await userService.signIn(this.form)
         this.loading = false
         await this.$resultNotify(result)
+        jsCookie.set("token", result.data, { expires: 30, domain: DOMAIN })
         urlUtil.isUrl(this.continue)
           ? location.replace(this.continue)
           : this.$router.replace(this.continue ? this.continue : "/")

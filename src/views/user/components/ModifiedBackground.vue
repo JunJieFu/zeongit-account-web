@@ -92,7 +92,7 @@ export default {
         this.loading = false
         return
       }
-      const result = await userInfoService.modifiedBackground({
+      const result = await userInfoService.updateBackground({
         background: qiniuResult.hash
       })
       this.loading = false

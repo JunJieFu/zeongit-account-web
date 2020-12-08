@@ -22,19 +22,19 @@ export class SignInForm {
 }
 
 export class SignUpForm {
-  constructor(verificationCodeOperation) {
+  constructor(type) {
     this.phone = ""
-    this.verificationCode = ""
-    this.verificationCodeOperation = verificationCodeOperation
+    this.code = ""
+    this.type = type
     this.password = ""
   }
 }
 
 export class ForgotForm {
-  constructor(verificationCodeOperation) {
+  constructor(type) {
     this.phone = ""
-    this.verificationCode = ""
-    this.verificationCodeOperation = verificationCodeOperation
+    this.code = ""
+    this.type = type
     this.password = ""
   }
 }

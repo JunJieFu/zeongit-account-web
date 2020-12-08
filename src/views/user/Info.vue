@@ -58,7 +58,7 @@
         <v-list-item class="py-3" @click="modifiedGenderDialogVisible = true">
           <label>性别</label>
           <span class="flex-1 pr-3 ellipsis">{{
-            $enum.Gender[info.gender].value
+            $enum.Gender[info.gender]
           }}</span>
           <v-icon>mdi-chevron-right</v-icon>
         </v-list-item>

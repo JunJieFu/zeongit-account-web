@@ -94,7 +94,7 @@ export default {
         this.loading = false
         return
       }
-      const result = await userInfoService.modifiedAvatarUrl({
+      const result = await userInfoService.updateAvatarUrl({
         avatarUrl: qiniuResult.hash
       })
       this.loading = false

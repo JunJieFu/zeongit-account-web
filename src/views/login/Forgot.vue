@@ -47,7 +47,7 @@
                     <v-text-field
                       label="验证码"
                       prepend-icon="mdi-check"
-                      v-model.trim="form.verificationCode"
+                      v-model.trim="form.code"
                       :rules="verificationCodeRules()"
                     ></v-text-field>
                   </v-col>
@@ -112,7 +112,7 @@ import rulesUtil from "../../plugins/zg/script/util/rules"
 export default {
   data() {
     return {
-      form: new ForgotForm(this.$enum.VerificationCodeOperation.FORGET.key),
+      form: new ForgotForm(1),
       formValid: false,
       sendCordFormValid: false,
       rePassword: "",

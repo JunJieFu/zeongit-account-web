@@ -7,10 +7,10 @@
       <v-form ref="form" v-model="formValid">
         <v-radio-group v-model="input">
           <v-radio
-            :label="item.value"
-            :value="item.key"
-            v-for="item in $enum.Gender"
-            :key="item.key"
+            :label="value"
+            :value="key"
+            v-for="(value, key) in $enum.Gender"
+            :key="key"
           ></v-radio>
         </v-radio-group>
       </v-form>
@@ -52,7 +52,7 @@ export default {
       if (this.formValid) {
         this.loading = true
         try {
-          const result = await userInfoService.modified({
+          const result = await userInfoService.update({
             gender: this.input
           })
           await this.$resultNotify(result)

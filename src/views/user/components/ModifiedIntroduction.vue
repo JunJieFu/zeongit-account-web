@@ -55,7 +55,7 @@ export default {
       if (this.formValid) {
         this.loading = true
         try {
-          const result = await userInfoService.modified({
+          const result = await userInfoService.update({
             introduction: this.input
           })
           await this.$resultNotify(result)

@@ -13,8 +13,8 @@ export const userService = {
   forgot(params) {
     return httpUtil.post("/user/forgot", params)
   },
-  modified(params) {
-    return httpUtil.post("/user/modified", params)
+  update(params) {
+    return httpUtil.post("/user/update", params)
   }
 }
 
@@ -25,17 +25,17 @@ export const userInfoService = {
   save(params) {
     return httpUtil.post("/userInfo/save", params)
   },
-  modified(params) {
+  update(params) {
     return httpUtil.post("/userInfo/save", params)
   },
-  modifiedAvatarUrl(params) {
-    return httpUtil.post("/userInfo/modifiedAvatarUrl", params)
+  updateAvatarUrl(params) {
+    return httpUtil.post("/userInfo/updateAvatarUrl", params)
   },
-  modifiedBackground(params) {
-    return httpUtil.post("/userInfo/modifiedBackground", params)
+  updateBackground(params) {
+    return httpUtil.post("/userInfo/updateBackground", params)
   },
-  getModifiedPasswordDate() {
-    return httpUtil.get("/userInfo/getModifiedPasswordDate")
+  getUpdatePasswordDate() {
+    return httpUtil.get("/userInfo/getUpdatePasswordDate")
   }
 }
 

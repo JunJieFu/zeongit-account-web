@@ -101,7 +101,7 @@ export default {
       if (this.formValid) {
         this.loading = true
         try {
-          const result = await userInfoService.modified({
+          const result = await userInfoService.update({
             country: this.country,
             province: this.province,
             city: this.city

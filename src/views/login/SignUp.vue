@@ -47,7 +47,7 @@
                     <v-text-field
                       label="验证码"
                       prepend-icon="mdi-check"
-                      v-model.trim="form.verificationCode"
+                      v-model.trim="form.code"
                       :rules="verificationCodeRules()"
                     ></v-text-field>
                   </v-col>
@@ -109,12 +109,14 @@ import { SignUpForm } from "@/assets/script/model"
 import urlUtil from "@/plugins/zg/script/util/url"
 import { userService } from "@/assets/script/service"
 import rulesUtil from "@/plugins/zg/script/util/rules"
+import jsCookie from "js-cookie"
+import { DOMAIN } from "@/plugins/zg/script/constant/config"
 
 export default {
   data() {
     return {
       continue: this.$route.query.continue,
-      form: new SignUpForm(this.$enum.VerificationCodeOperation.REGISTER.key),
+      form: new SignUpForm(0),
       formValid: false,
       sendCordFormValid: false,
       rePassword: "",
@@ -160,6 +162,7 @@ export default {
         const result = await userService.signUp(this.form)
         this.loading = false
         await this.$resultNotify(result)
+        jsCookie.set("token", result.data, { expires: 30, domain: DOMAIN })
         urlUtil.isUrl(this.continue)
           ? location.replace(this.continue)
           : this.$router.replace(this.continue ? this.continue : "/")
