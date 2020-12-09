@@ -95,7 +95,7 @@ export default {
         return
       }
       const result = await userInfoService.updateAvatarUrl({
-        avatarUrl: qiniuResult.hash
+        avatar: qiniuResult.hash
       })
       this.loading = false
       await this.$resultNotify(result)
